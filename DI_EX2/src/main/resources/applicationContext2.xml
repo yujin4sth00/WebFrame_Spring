@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- exam1 객체 생성 -->
+	<bean id="exam1" class="com.spring.diex.diex1.LecExam"
+		p:kor="1000" p:eng="2000" p:math="3000"
+	></bean>
+	
+	<!-- 연습 -->
+	<bean id = "exam5" class="com.spring.diex.diex1.LecExam"
+	 p:kor="10000" p:eng="20000" p:math="30000"></bean>
+
+
+	<!-- ArrayList<Exam> exams = new ArrayList<Exam>();
+		exams.add(new LecExam(10,20,30));
+		exams.add(exam);
+		
+		for(Exam e : exams) {
+			System.out.println("ArrayList : " + e.toString());
+		} -->
+		
+		<bean id="exams" class="java.util.ArrayList">
+			<constructor-arg>
+				<list>
+					<!-- exams.add(new LecExam(10,20,30)); 이때 id는 아직 안쓰므로 ""만 넣거나 지워도 됨-->
+					<bean class="com.spring.diex.diex1.LecExam" p:kor="10" p:eng="20" p:math="30" />
+					<!-- exams.add(exam); -->
+					<ref bean="exam1" />
+					<ref bean="exam5" /> 
+				</list>
+			</constructor-arg>
+		</bean>
+		<!-- System.out.println("2.MapCollection 연습");
+		Map<String, String> studentInfo = new LinkedHashMap<String, String>();
+		studentInfo.put("홍길동1", "홍길동1 주소");
+		studentInfo.put("홍길동2", "홍길동2 주소");
+		
+		 -->
+		<bean id = "collectionMap" class="com.spring.diex.diex1.CollectionMap">
+			<property name="studentInfo">
+				<map>
+					<entry>
+						<key><value>홍길동1</value></key>
+						<value>홍길동1 주소</value>
+					</entry>
+					<entry>
+						<key><value>홍길동2</value></key>
+						<value>홍길동2 주소</value>
+					</entry>
+					<entry>
+						<key><value>홍길동3</value></key>
+						<value>홍길동3 주소</value>
+					</entry>
+				</map>
+			</property>
+		</bean>
+		
+		<!-- Set<String> studentList = new HashSet<String>();
+				studentList.add("홍길동1");
+				studentList.add("홍길동2");
+				studentList.add("홍길동3"); -->
+				
+		<bean id="collectionSet" class="com.spring.diex.diex1.CollectionSet">
+			<property name = "studentList">
+				<set value-type= "java.lang.String">
+					<value>홍길동1</value>
+					<value>홍길동2</value>
+					<value>홍길동3</value>
+				</set>
+			</property>
+		</bean>
+		
+	
+</beans>

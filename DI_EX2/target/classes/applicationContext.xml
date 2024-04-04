@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- 주석 : 블록지정후에 ctrl + shift + /  -->
+	<!-- Exam exam = new LecExam(10, 20, 30); -->
+	<bean id="exam" class="com.spring.diex.diex1.LecExam">
+		<property name="kor" value="10" />
+		<property name="eng" value="20" />
+		<property name="math" value="30" />	
+	</bean>	
+	<!-- 
+	Exam exam1 = new LecExam(100, 200, 300);
+	Exam exam2 = new LecExam(1, 2, 3); 
+	-->
+	<bean id="exam1" class="com.spring.diex.diex1.LecExam">
+		<property name="kor" value="100" />
+		<property name="eng" value="200" />
+		<property name="math" value="300" />	
+	</bean>
+	<bean id="exam2" class="com.spring.diex.diex1.LecExam">
+		<property name="kor" value="1" />
+		<property name="eng" value="2" />
+		<property name="math" value="3" />	
+	</bean>
+	
+
+	<!-- constructor-arg 연습 -->
+	<bean id = "exam3" class="com.spring.diex.diex1.LecExam">
+		<constructor-arg value = "1000"></constructor-arg>
+		<constructor-arg value = "2000"></constructor-arg>
+		<constructor-arg value = "3000"></constructor-arg>
+	</bean>
+	
+	<bean id = "exam4" class="com.spring.diex.diex1.LecExam">
+		<constructor-arg name = "kor" value = "70"></constructor-arg>
+		<constructor-arg name = "math" value = "80"></constructor-arg>
+		<constructor-arg name = "eng" value = "100"></constructor-arg>
+	</bean>
+	
+	<!-- p네임스페이스 -->
+	<bean id = "exam5" class="com.spring.diex.diex1.LecExam"
+	 p:kor="10000" p:eng="20000" p:math="30000"></bean>
+	
+	<!-- 
+	ExamConsole console = new MultipleLineExamPrint();
+	console.setExam(exam); 
+	-->
+	<!-- <bean id="console" class="com.spring.diex.diex1.MultipleLineExamPrint">
+		<property name="exam" ref="exam" />
+	</bean> -->
+	<bean id="console" class="com.spring.diex.diex1.OneLineExamPrint">
+		<property name="exam" ref="exam" />
+	</bean>
+	
+	
+	
+	
+	
+	
+		
+	
+</beans>
